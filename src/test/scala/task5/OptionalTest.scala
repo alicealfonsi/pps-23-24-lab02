@@ -28,12 +28,12 @@ class OptionalTest:
   /** Task 5 -- Look the behaviour of map operator */
   @Test def mapShouldReturnEmptyWhenEmpty(): Unit = {
     val empty: Optional[Int] = Optional.Empty()
-    val result = Optional.map(empty, _ + 1)
+    val result = Optional.map(empty)((_: Int) + 1)
     assertTrue(Optional.isEmpty(result))
   }
 
   @Test def mapShouldReturnTransformedValueWhenNonEmpty(): Unit = {
     val nonEmpty = Optional.Maybe(0)
-    val result = Optional.map(nonEmpty, _ + 1)
+    val result = Optional.map(nonEmpty)(_ + 1)
     assertEquals(1, Optional.orElse(result, 1))
   }
